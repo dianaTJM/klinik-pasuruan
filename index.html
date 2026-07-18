@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klinik Pasuruan — More Than a Checkup. It's a Ritual.</title>
+  <meta name="description" content="Klinik Pasuruan adalah klinik primer modern di Pasuruan, Jawa Timur. Layanan kesehatan keluarga dengan standar premium, dokter spesialis, dan pengalaman pasien yang nyaman." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Klinik Pasuruan — More Than a Checkup. It's a Ritual." />
+  <meta property="og:description" content="Klinik primer modern di Pasuruan. Layanan kesehatan keluarga dengan standar premium." />
+  <meta property="og:image" content="images/hero.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+
+  <style>
+    /* ─── RESET & TOKENS ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0F2B46;
+      --midblue:    #1A5F8E;
+      --sky:        #4BA3C3;
+      --lightblue:  #B8D9E8;
+      --mint:       #2EC4B6;
+      --mint-light: #E0F7F4;
+      --white:      #FFFFFF;
+      --offwhite:   #F5F8FA;
+      --gray100:    #E8EDF2;
+      --gray300:    #BDC8D4;
+      --gray500:    #6B7F94;
+      --gray700:    #3D5066;
+      --font-body:  'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-head:  'Georgia', 'Times New Roman', serif;
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(15, 43, 70, 0.10);
+      --maxw:       1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray700);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--font-head); color: var(--navy); line-height: 1.25; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+    h3 { font-size: 1.2rem; }
+    p  { margin-bottom: 1rem; }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--mint-light);
+      color: var(--mint);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section--alt  { background: var(--offwhite); }
+    .section--dark { background: var(--navy); color: var(--white); }
+    .section--dark h2, .section--dark h3 { color: var(--white); }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn:active { transform: translateY(0); }
+    .btn--primary { background: var(--mint); color: var(--navy); }
+    .btn--secondary { background: var(--white); color: var(--navy); border: 2px solid var(--lightblue); }
+    .btn--white { background: var(--white); color: var(--navy); }
+    .btn--navy { background: var(--navy); color: var(--white); }
+
+    /* ─── HEADER / NAV ───────────────────────────────────────── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray100);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 70px;
+    }
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--navy); letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--mint); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--gray700); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--midblue); }
+    .nav-cta {
+      background: var(--mint); color: var(--navy) !important;
+      padding: 9px 22px; border-radius: 6px; font-weight: 700;
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--navy); transition: 0.3s; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a4d7a 50%, var(--midblue) 100%);
+      color: var(--white);
+      padding: 100px 0 120px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('images/hero.jpg') center/cover no-repeat;
+      opacity: 0.18;
+      mix-blend-mode: overlay;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .hero h1 { color: var(--white); margin-bottom: 1.2rem; }
+    .hero p { color: var(--lightblue); font-size: 1.15rem; margin-bottom: 2.2rem; max-width: 580px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ─── TRUSTED NUMBERS ────────────────────────────────────── */
+    .stats {
+      background: var(--white);
+      padding: 60px 0;
+      border-bottom: 1px solid var(--gray100);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    }
+    .stat { text-align: center; }
+    .stat__number {
+      font-family: var(--font-head);
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--midblue); line-height: 1.1;
+    }
+    .stat__label { color: var(--gray500); font-size: 0.9rem; margin-top: 6px; }
+
+    /* ─── SERVICES ───────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray100);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .service-card__icon {
+      width: 56px; height: 56px;
+      background: var(--mint-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 20px;
+    }
+    .service-card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+    .service-card p { color: var(--gray500); font-size: 0.9rem; line-height: 1.65; margin-bottom: 0; }
+
+    /* ─── WHY CHOOSE US ──────────────────────────────────────── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      margin-top: 48px;
+    }
+    .why-item { text-align: center; padding: 28px; }
+    .why-item__icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .why-item h3 { margin-bottom: 10px; }
+    .why-item p { color: var(--gray500); font-size: 0.9rem; }
+
+    /* ─── DOCTORS ────────────────────────────────────────────── */
+    .doctors-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+      margin-top: 48px;
+    }
+    .doctor-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .doctor-card:hover { transform: translateY(-4px); }
+    .doctor-card__img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      background: var(--gray100);
+    }
+    .doctor-card__info { padding: 20px 22px 24px; }
+    .doctor-card__name { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+    .doctor-card__spec { color: var(--mint); font-size: 0.85rem; font-weight: 600; }
+
+    /* ─── FACILITIES ─────────────────────────────────────────── */
+    .facilities-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 48px;
+    }
+    .facility-card {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+    .facility-card img { width: 100%; height: 100%; object-fit: cover; }
+    .facility-card__overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(15,43,70,0.85));
+      padding: 40px 20px 20px;
+      color: var(--white);
+    }
+    .facility-card__overlay h3 { color: var(--white); font-size: 1.05rem; }
+
+    /* ─── GALLERY ────────────────────────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .gallery-item {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--gray100);
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--gray100);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .testimonial-card__stars { color: #F5A623; font-size: 1.1rem; margin-bottom: 14px; }
+    .testimonial-card__text { color: var(--gray700); font-style: italic; font-size: 0.95rem; line-height: 1.7; margin-bottom: 18px; }
+    .testimonial-card__author { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+    .testimonial-card__role { color: var(--gray500); font-size: 0.82rem; }
+
+    /* ─── FAQ ────────────────────────────────────────────────── */
+    .faq-list { max-width: 780px; margin: 48px auto 0; }
+    details {
+      border: 1px solid var(--gray100);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    summary {
+      padding: 18px 22px;
+      font-weight: 600; color: var(--navy);
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.3rem; color: var(--mint); transition: transform 0.2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-answer { padding: 0 22px 20px; color: var(--gray500); font-size: 0.92rem; line-height: 1.75; }
+
+    /* ─── MAP & CONTACT ──────────────────────────────────────── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      margin-top: 48px;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-item__icon {
+      width: 48px; height: 48px;
+      background: var(--mint-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .contact-item__label { font-size: 0.82rem; color: var(--gray500); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+    .contact-item__value { font-weight: 600; color: var(--navy); font-size: 1.05rem; }
+
+    .map-frame {
+      width: 100%; height: 380px;
+      border: none; border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* ─── RESERVATION CTA ────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--mint) 0%, var(--midblue) 100%);
+      color: var(--white);
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-banner h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-banner p { color: rgba(255,255,255,0.88); font-size: 1.1rem; margin-bottom: 2rem; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 30px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo { color: var(--white); margin-bottom: 12px; }
+    .footer-brand p { color: rgba(255,255,255,0.55); font-size: 0.9rem; }
+    .footer-col h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 16px; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.55); font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      text-align: center; font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── MOBILE NAV ─────────────────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray100);
+      padding: 16px 24px;
+      flex-direction: column; gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      z-index: 99;
+    }
+    .mobile-nav a { font-weight: 600; color: var(--navy); padding: 10px 0; border-bottom: 1px solid var(--gray100); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid  { grid-template-columns: repeat(2, 1fr); }
+      .doctors-grid   { grid-template-columns: repeat(2, 1fr); }
+      .why-grid       { grid-template-columns: repeat(3, 1fr); }
+      .facilities-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid    { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .hamburger { display: none; }
+      .hamburger { display: flex; }
+      .nav { height: 60px; }
+      .mobile-nav.open { display: flex; }
+      .hero { padding: 70px 0 90px; }
+      .section { padding: 56px 0; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid       { grid-template-columns: 1fr; }
+      .doctors-grid   { grid-template-columns: repeat(2, 1fr); }
+      .facilities-grid { grid-template-columns: 1fr; }
+      .gallery-grid   { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 180px); }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid   { grid-template-columns: 1fr; }
+      .footer-grid    { grid-template-columns: 1fr; }
+      .hero-actions   { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid   { grid-template-columns: 1fr 1fr; }
+      .doctors-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════ -->
+<header>
+  <nav class="nav">
+    <div class="logo">Klinik <span>Pasuruan</span></div>
+    <div class="nav-links">
+      <a href="#layanan">Layanan</a>
+      <a href="#dokter">Dokter</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
+      <a href="#janji" class="nav-cta">Buat Janji</a>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#layanan" onclick="toggleMobileNav()">Layanan</a>
+  <a href="#dokter" onclick="toggleMobileNav()">Dokter</a>
+  <a href="#fasilitas" onclick="toggleMobileNav()">Fasilitas</a>
+  <a href="#testimoni" onclick="toggleMobileNav()">Testimoni</a>
+  <a href="#faq" onclick="toggleMobileNav()">FAQ</a>
+  <a href="#kontak" onclick="toggleMobileNav()">Kontak</a>
+  <a href="#janji" class="btn btn--primary" onclick="toggleMobileNav()" style="text-align:center">Buat Janji</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content fade-up">
+      <h1>Kesehatan Anda,<br>Prioritas Kami.</h1>
+      <p>Klinik Pasuruan menghadirkan layanan kesehatan modern dengan standar premium. Pengalaman medis yang tenang, profesional, dan sepenuhnya berfokus pada Anda.</p>
+      <div class="hero-actions">
+        <a href="#janji" class="btn btn--primary">📅 Buat Janji</a>
+        <a href="#layanan" class="btn btn--white">🔍 Lihat Layanan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TRUSTED NUMBERS
+═══════════════════════════════════════════ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat__number">15+</div>
+        <div class="stat__label">Tahun Melayani</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">50K+</div>
+        <div class="stat__label">Pasien Terpercaya</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">12</div>
+        <div class="stat__label">Dokter Spesialis</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">4.9</div>
+        <div class="stat__label">Rating Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section class="section" id="layanan">
+  <div class="container">
+    <span class="section-tag">Layanan Kami</span>
+    <h2>Layanan Kesehatan<br>yang Sesuai Kebutuhan Anda</h2>
+    <p style="margin-top:12px;max-width:640px;color:var(--gray500)">
+      Dari pemeriksaan rutin hingga perawatan khusus, tim dokter profesional kami siap memberikan layanan medis terbaik dengan standar keselamatan modern.
+    </p>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-card__icon">🩺</div>
+        <h3>Poli Umum</h3>
+        <p>Pemeriksaan kesehatan umum, diagnosis, dan penanganan penyakit akut maupun kronis dengan standar medis terbaru.</p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-card__icon">👶</div>
+        <h3>Poli Anak</h3>
+        <p>Perawatan kesehatan anak dari bayi hingga remaja. Imunisasi, pemeriksaan tumbuh kembang, dan konsultasi kesehatan anak.</p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-card__icon">🦷</div>
+        <h3>Poli Gigi</h3>
+        <p>Perawatan gigi dan mulut secara komprehensif: scaling, penambalan, cabut gigi, dan perawatan estetika gigi.</p>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <div class="service-card__icon">🧬</div>
+        <h3>Medical Check Up</h3>
+        <p>Paket pemeriksaan kesehatan menyeluruh untuk deteksi dini penyakit, dengan laporan hasil yang komprehensif.</p>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-card">
+        <div class="service-card__icon">💉</div>
+        <h3>Vaksinasi</h3>
+        <p>Layanan vaksinasi untuk semua usia — anak dewasa hingga lansia — dengan stok vaksin terverifikasi dan tenaga medis bersertifikat.</p>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service-card">
+        <div class="service-card__icon">🔬</div>
+        <h3>Pemeriksaan Laboratorium</h3>
+        <p>Diagnosis laboratorium cepat dan akurat dengan peralatan modern. Hasil dapat diambil dalam hitungan jam.</p>
+      </div>
+
+      <!-- Service 7 -->
+      <div class="service-card">
+        <div class="service-card__icon">💊</div>
+        <h3>Farmasi Klinik</h3>
+        <p>Apotek klinik dengan obat-obatan umum, resep dokter, dan produk kesehatan yang tersedia dengan harga terjangkau.</p>
+      </div>
+
+      <!-- Service 8 -->
+      <div class="service-card">
+        <div class="service-card__icon">🏠</div>
+        <h3>Home Care</h3>
+        <p>Layanan perawatan di rumah untuk pasien yang membutuhkan pengawasan medis tanpa harus datang ke klinik.</p>
+      </div>
+
+      <!-- Service 9 -->
+      <div class="service-card">
+        <div class="service-card__icon">👨‍⚕️</div>
+        <h3>Konsultasi Dokter</h3>
+        <p>Konsultasi privat dengan dokter spesialis untuk diagnosis dan rencana perawatan yang dipersonalisasi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════════════ -->
+<section class="section section--alt" id="why-us">
+  <div class="container">
+    <span class="section-tag">Mengapa Kami</span>
+    <h2>Lebih dari Sekedar Klinik<br>— Pengalaman yang Anda Merasakan</h2>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-item__icon">⭐</div>
+        <h3>Standar Premium</h3>
+        <p>Fasilitas dan layanan dirancang untuk kenyamanan maksimal pasien dengan standar medis modern.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon">🚀</div>
+        <h3>Pelayanan Cepat</h3>
+        <p>Antrean yang teratur dan sistem booking online memastikan waktu tunggu Anda seminimal mungkin.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon">👨‍⚕️</div>
+        <h3>Dokter Berpengalaman</h3>
+        <p>Tim dokter spesialis dan umum dengan pengalaman bertahun-tahun di bidang masing-masing.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon">🔬</div>
+        <h3>Peralatan Modern</h3>
+        <p>Dilengkapi teknologi diagnostik dan peralatan medis terkini untuk akurasi hasil pemeriksaan.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon">🛡️</div>
+        <h3>Terpercaya & Aman</h3>
+        <p>Terdaftar resmi di Kemenkes dan memiliki prosedur sterilisasi yang ketat untuk setiap pasien.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon">💚</div>
+        <h3>Harga Transparan</h3>
+        <p>Tidak ada biaya tersembunyi. Harga layanan dan obat diinformasikan dengan jelas sebelum perawatan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DOCTORS
+═══════════════════════════════════════════ -->
+<section class="section" id="dokter">
+  <div class="container">
+    <span class="section-tag">Tim Medis Kami</span>
+    <h2>Dokter Profesional,<br>Dapat Dipercaya</h2>
+    <p style="margin-top:12px;max-width:640px;color:var(--gray500)">
+      Setiap dokter di Klinik Pasuruan memiliki kompetensi terverifikasi dan dedikasi tinggi untuk memberikan perawatan terbaik.
+    </p>
+
+    <div class="doctors-grid">
+      <!-- Doctor 1 -->
+      <div class="doctor-card">
+        <img class="doctor-card__img" src="images/doctor1.jpg" alt="dr. Ahmad Wijaya, Sp.PD — Dokter Penyakit Dalam" loading="lazy" />
+        <div class="doctor-card__info">
+          <div class="doctor-card__name">dr. Ahmad Wijaya, Sp.PD</div>
+          <div class="doctor-card__spec">Penyakit Dalam</div>
+        </div>
+      </div>
+
+      <!-- Doctor 2 -->
+      <div class="doctor-card">
+        <img class="doctor-card__img" src="images/doctor2.jpg" alt="dr. Siti Nurhaliza, Sp.A — Dokter Anak" loading="lazy" />
+        <div class="doctor-card__info">
+          <div class="doctor-card__name">dr. Siti Nurhaliza, Sp.A</div>
+          <div class="doctor-card__spec">Anak</div>
+        </div>
+      </div>
+
+      <!-- Doctor 3 -->
+      <div class="doctor-card">
+        <img class="doctor-card__img" src="images/doctor3.jpg" alt="drg. Budi Santoso — Dokter Gigi" loading="lazy" />
+        <div class="doctor-card__info">
+          <div class="doctor-card__name">drg. Budi Santoso</div>
+          <div class="doctor-card__spec">Dokter Gigi</div>
+        </div>
+      </div>
+
+      <!-- Doctor 4 -->
+      <div class="doctor-card">
+        <img class="doctor-card__img" src="images/doctor4.jpg" alt="dr. Maya Sari, Sp.OG — Dokter Kebidanan" loading="lazy" />
+        <div class="doctor-card__info">
+          <div class="doctor-card__name">dr. Maya Sari, Sp.OG</div>
+          <div class="doctor-card__spec">Kebidanan &amp; Kandungan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FACILITIES
+═══════════════════════════════════════════ -->
+<section class="section section--alt" id="fasilitas">
+  <div class="container">
+    <span class="section-tag">Fasilitas</span>
+    <h2>Ruang Berobat yang<br>Nyaman &amp; Modern</h2>
+
+    <div class="facilities-grid">
+      <div class="facility-card">
+        <img src="images/waiting_room.jpg" alt="Ruang tunggu klinik modern" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Ruang Tunggu Nyaman</h3>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img src="images/lab.jpg" alt="Laboratorium klinik" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Laboratorium Diagnostik</h3>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img src="images/hero.jpg" alt="Ruang pemeriksaan dokter" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Ruang Pemeriksaan Dokter</h3>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img src="images/nurse.jpg" alt="Tim perawat profesional" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Ruang Perawatan</h3>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img src="images/vaccination_sinovac.jpg" alt="Ruang vaksinasi" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Ruang Vaksinasi</h3>
+        </div>
+      </div>
+      <div class="facility-card">
+        <img src="images/stethoscope.jpg" alt="Alat medis modern" loading="lazy" />
+        <div class="facility-card__overlay">
+          <h3>Alat Medis Modern</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <span class="section-tag">Galeri</span>
+    <h2>Suasana di Klinik Pasuruan</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/hero.jpg" alt="Suasana klinik Pasuruan" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/waiting_room.jpg" alt="Ruang tunggu" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/lab.jpg" alt="Laboratorium" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/nurse.jpg" alt="Perawat profesional" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/chart.jpg" alt="Pendaftaran pasien" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/stethoscope2.jpg" alt="Alat kesehatan" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════ -->
+<section class="section section--alt" id="testimoni">
+  <div class="container">
+    <span class="section-tag">Testimoni</span>
+    <h2>Apa Kata Pasien Kami</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">"Pelayanan sangat ramah dan cepat. Dokter menjelaskan kondisi saya dengan detail. Kliniknya bersih dan nyaman. Sangat recommended!"</p>
+        <div class="testimonial-card__author">Budi Hartono</div>
+        <div class="testimonial-card__role">Pasien Poli Umum</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">"Anak saya takut ke dokter tapi di sini perawat dan dokter sangat sabar. Vaksinasi berjalan lancar tanpa air mata. Terima kasih Klinik Pasuruan!"</p>
+        <div class="testimonial-card__author">Dewi Kusuma</div>
+        <div class="testimonial-card__role">Pasien Poli Anak</div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__text">"Hasil MCU saya keluar cuma 2 jam. Dokter langsung menjelaskan hasilnya. Harga juga transparan. Sudah langganan 3 tahun."</p>
+        <div class="testimonial-card__author">Hendra Wijaya</div>
+        <div class="testimonial-card__role">Pasien Medical Check Up</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <span class="section-tag">Pertanyaan Umum</span>
+    <h2 style="text-align:center">Pertanyaan yang Sering<br>Kami Terima</h2>
+
+    <div class="faq-list">
+      <details>
+        <summary>Apakah saya perlu membuat janji temu terlebih dahulu?</summary>
+        <div class="faq-answer">
+          Ya, kami sangat merekomendasikan untuk membuat janji temu terlebih dahulu melalui WhatsApp atau form online. Namun, kami juga menerima pasien datang langsung dengan sistem antrean yang terstruktur.
+        </div>
+      </details>
+
+      <details>
+        <summary>Apa jam operasional Klinik Pasuruan?</summary>
+        <div class="faq-answer">
+          Klinik buka setiap hari Senin – Sabtu: pukul 08.00 – 20.00 WIB. Hari Minggu dan hari libur nasional buka pukul 09.00 – 15.00 WIB.
+        </div>
+      </details>
+
+      <details>
+        <summary>Apakah layanan MCU bisa langsung dapat hasil?</summary>
+        <div class="faq-answer">
+          Banyak pemeriksaan laboratorium rutin dapat keluar dalam 2–4 jam. Hasil pemeriksaan khusus seperti CT Scan atau patologi anatomi membutuhkan waktu 1–3 hari kerja.
+        </div>
+      </details>
+
+      <details>
+        <summary>Apakah klinik menerima BPJS Kesehatan?</summary>
+        <div class="faq-answer">
+          Ya, Klinik Pasuruan adalah provider BPJS Kesehatan. Pastikan Anda membawa kartu BPJS dan KTP elektronik saat berkunjung.
+        </div>
+      </details>
+
+      <details>
+        <summary>Apakah ada layanan home care?</summary>
+        <div class="faq-answer">
+          Ya, kami menyediakan layanan home care untuk pasien yang tidak bisa datang ke klinik. Hubungi kami untuk informasi lebih lanjut dan penjadwalan kunjungan.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MAP & CONTACT
+═══════════════════════════════════════════ -->
+<section class="section section--alt" id="kontak">
+  <div class="container">
+    <span class="section-tag">Hubungi Kami</span>
+    <h2>Temui Kami di Pasuruan</h2>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <div>
+            <div class="contact-item__label">Alamat</div>
+            <div class="contact-item__value">Jl. Diponegoro No. 88, Kelurahan Bugul Kidul,<br>Kecamatan Pasuruan, Pasuruan, Jawa Timur 67118</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">📞</div>
+          <div>
+            <div class="contact-item__label">Telepon</div>
+            <div class="contact-item__value">(0354) 441-789</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">💬</div>
+          <div>
+            <div class="contact-item__label">WhatsApp</div>
+            <div class="contact-item__value">0812-3456-7890</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">🕐</div>
+          <div>
+            <div class="contact-item__label">Jam Operasional</div>
+            <div class="contact-item__value">Senin – Sabtu: 08.00 – 20.00 WIB<br>Minggu: 09.00 – 15.00 WIB</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">📧</div>
+          <div>
+            <div class="contact-item__label">Email</div>
+            <div class="contact-item__value">info@klinikpasuruan.id</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <iframe
+          class="map-frame"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.709!2d112.9078!3d-7.6401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7865d44c2d9f83%3A0x4027a76e352ed80!2sPasuruan%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi Klinik Pasuruan di Google Maps">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RESERVATION CTA
+═══════════════════════════════════════════ -->
+<section class="cta-banner" id="janji">
+  <div class="container">
+    <h2>Siap Menjaga Kesehatan Anda?</h2>
+    <p>Buat janji temu sekarang dan rasakan pengalaman layanan kesehatan modern di Klinik Pasuruan.</p>
+    <a href="https://wa.me/6281234567890?text=Halo%20Klinik%20Pasuruan,%20saya%20ingin%20membuat%20janji%20temu." class="btn btn--white" style="font-size:1.05rem;padding:15px 36px">
+      💬 Buat Janji via WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Klinik <span>Pasuruan</span></div>
+        <p>Layanan kesehatan keluarga modern dengan standar premium. Terpercaya oleh lebih dari 50.000 pasien di Pasuruan dan sekitarnya.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Layanan</h4>
+        <ul>
+          <li><a href="#layanan">Poli Umum</a></li>
+          <li><a href="#layanan">Poli Anak</a></li>
+          <li><a href="#layanan">Poli Gigi</a></li>
+          <li><a href="#layanan">Medical Check Up</a></li>
+          <li><a href="#layanan">Vaksinasi</a></li>
+          <li><a href="#layanan">Laboratorium</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Perusahaan</h4>
+        <ul>
+          <li><a href="#dokter">Dokter</a></li>
+          <li><a href="#fasilitas">Fasilitas</a></li>
+          <li><a href="#gallery">Galeri</a></li>
+          <li><a href="#testimoni">Testimoni</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul>
+          <li>Jl. Diponegoro No. 88, Pasuruan</li>
+          <li>(0354) 441-789</li>
+          <li>0812-3456-7890</li>
+          <li>info@klinikpasuruan.id</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Klinik Pasuruan. Seluruh hak cipta dilindungi undang-undang.
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script>
+  // Mobile nav toggle
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('open');
+  }
+
+  // Active nav link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  function highlightNav() {
+    const scrollY = window.scrollY + 120;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const h = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollY >= top && scrollY < top + h) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + id) {
+            link.style.color = 'var(--midblue)';
+          }
+        });
+      }
+    });
+  }
+  window.addEventListener('scroll', highlightNav);
+</script>
+
+</body>
+</html>
